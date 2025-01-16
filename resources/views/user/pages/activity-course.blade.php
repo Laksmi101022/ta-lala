@@ -36,6 +36,8 @@
                                         </div>
                                         <h5>- {{ $row->name }} -</h5>
                                         <p class="mb-0">Waktu :
+                                            <p>
+                                                {{ $row->additional}}
                                             {{ \Carbon\Carbon::parse($row->start_hour)->format('H:i') }} -
                                             {{ \Carbon\Carbon::parse($row->end_hour)->format('H:i') }}</p>
                                     </div>
