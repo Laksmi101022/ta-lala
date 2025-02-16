@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AchievementController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\QuizController;
@@ -9,7 +10,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\User\HomeController as UserHome;
 use App\Http\Controllers\User\ActivityController as UserActivity;
+use App\Http\Controllers\User\ContactController as UserContact;
+use App\Http\Controllers\User\HelpController as UserHelp;
 use App\Http\Controllers\User\QuizController as UserQuiz;
 use App\Http\Controllers\User\AboutController as UserAbout;
 use App\Http\Controllers\User\BerandaController as UserBeranda;
@@ -46,6 +50,8 @@ Route::middleware(['auth'])->group(callback: function () {
 Route::prefix('/about-us')->group(function () {
     Route::get('/history', [UserAbout::class, 'history'])->name('about-us.history');
     Route::get('/meaning', [UserAbout::class, 'meaning'])->name('about-us.meaning');
+    Route::get('/achievement', [UserAbout::class, 'achievement'])->name('about-us.achievement');
+    Route::get('/trainer-profile', [UserAbout::class, 'trainerProfile'])->name('about-us.trainer-profile');
 });
 Route::prefix('/activity')->group(function () {
     Route::get('/gallery', [UserActivity::class, 'gallery'])->name('activity.gallery');
@@ -83,6 +89,11 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('/store', [GalleryController::class, 'store'])->name('admin.gallery.store');
                 Route::get('/get-gallery', [GalleryController::class, 'getGallery'])->name('admin.gallery.get');
             });
+            Route::prefix('/achievement')->group(function () {
+                Route::get('/', [AchievementController::class, 'index'])->name('admin.achievement');
+                Route::post('/store', [AchievementController::class, 'store'])->name('admin.achievement.store');
+                Route::get('/get-achievement', [AchievementController::class, 'getAchievement'])->name('admin.achievement.get');
+            });
 
             Route::prefix('/course')->group(function () {
                 Route::get('/', [CourseController::class, 'index'])->name('admin.course');
@@ -104,6 +115,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::fallback(function () {
-    return response()->view('user.pages.404', [], 404);
+    return response()->view('user.404', [], 404);
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
@@ -27,5 +28,27 @@ class AboutController extends Controller
         } catch (\Throwable $th) {
             Log::error($th->getMessage());
         }
+    }
+    public function trainerProfile()
+    {
+        try {
+            return view(
+                'user.pages.about-us-trainer-profile'
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+        }
+    }
+    public function achievement()
+    {
+        $data = DB::table('achievement')
+            ->simplePaginate(20);
+
+        return view(
+            'user.pages.about-us-achievement',
+            [
+                'data' => $data
+            ]
+        );
     }
 }

@@ -12,21 +12,12 @@
                             datang di
                         </span> Sanggar
                         Tabuh Leklok</h1>
-                    <a href="{{ route('about-us.history') }}"
+                    <a href="{{ route('activity.course') }}"
                         class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 me-4 animated bounceInLeft">
                         Mulai Sekarang</a>
                 </div>
                 <div class="col-lg-5 col-md-12 wow bounceInUp shadow" data-wow-delay="0.1s">
-                    <div class="video"
-                        style="
-                        position: relative;
-                        height: 100%;
-                        min-height: 400px;
-                        background: url('{{ asset('assets/leklok.png') }}');
-                        background-position: center center;
-                        background-repeat: no-repeat;
-                        background-size: cover;
-                        border-radius: 8px;">
+                    <div class="video">
                         <button type="button" class="btn btn-play" data-bs-toggle="modal"
                             data-src="https://www.youtube.com/embed/0DCHQtL90Ms?si=n8H-5LneFeXMh070"
                             data-bs-target="#videoModal">
